@@ -1,0 +1,118 @@
+{
+  "name": "<%= project %>",
+  "displayName": "vscode插件",
+  "description": "vscode插件",
+  "icon": "img/avatar.png",
+  "version": "0.0.0",
+  "engines": {
+    "vscode": "^1.61.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "vscode插件",
+      "properties": {
+        "windowBaiduAppid": {
+          "type": "string",
+          "default": "",
+          "description": "百度翻译appid"
+        },
+        "windowBaiduKey": {
+          "type": "string",
+          "default": "",
+          "description": "百度翻译唯一key"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vscode-plugin",
+          "title": "vscode插件",
+          "icon": "img/avatar.png"
+        }
+      ]
+    },
+    "views": {
+      "wa-sideMenus": [
+        {
+          "type": "webview",
+          "id": "wa-translate",
+          "name": "翻译"
+        }
+      ]
+    },
+    "menus": {
+      "explorer/context": [],
+      "editor/title/context": []
+    },
+    "languages": [],
+    "commands": []
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "build": "vsce package && webpack -c pack/webpack.prod.js",
+    "create-publisher": "vsce create-publisher",
+    "vpub": "vsce publish",
+    "release": "release-it",
+    "dev": "webpack-dev-server -c pack/webpack.dev.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "@babel/preset-typescript": "^7.26.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/vscode": "^1.61.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "babel-loader": "^9.2.1",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mocha": "^10.2.0",
+    "release-it": "^17.0.0",
+    "ts-loader": "^9.4.3",
+    "typescript": "^5.1.3",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0",
+    "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
+    "ahooks": "^3.8.1",
+    "axios": "^1.6.7",
+    "copy-to-clipboard": "^3.3.3",
+    "cross-fetch": "^4.0.0",
+    "md5": "^2.3.0",
+    "prettier": "^3.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdmu-gaoqi/wa-window.git"
+  },
+  "publisher": "wa",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "author": "gaoqi <1224362143@qq.com>"
+}
