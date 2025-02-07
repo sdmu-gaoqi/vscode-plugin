@@ -1,4 +1,4 @@
-# wa-window-vue
+# <%= project %>
 
 vue 开发的 vscode 窗口工具插件模版
 
